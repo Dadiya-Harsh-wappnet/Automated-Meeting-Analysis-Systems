@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AMAS 360 Chatbot</title>
+</head>
+<body>
+  <h1>AMAS 360 Chatbot</h1>
+  <form id="chatForm">
+    <label for="role">Select your role:</label>
+    <select id="role" name="role">
+      <option value="employee">Employee</option>
+      <option value="manager">Manager</option>
+      <option value="hr">HR</option>
+    </select>
+    <br><br>
+    <div id="employeeEmailDiv" style="display: none;">
+      <label for="email">Your Email:</label>
+      <input type="text" id="email" name="email" placeholder="employee@example.com">
+      <br><br>
+    </div>
+    <label for="query">Your Query:</label>
+    <input type="text" id="query" name="query" style="width: 300px;" placeholder="Enter your query">
+    <br><br>
+    <button type="button" onclick="sendQuery()">Send</button>
+  </form>
+  <div id="responseBox" style="margin-top:20px; border:1px solid #ccc; padding:10px;"></div>
+
+  <script>
+    // Show or hide email input based on selected role.
+    document.getElementById('role').addEventListener('change', function() {
+      var role = this.value;
+      document.getElementById('employeeEmailDiv').style.display = (role === 'employee') ? 'block' : 'none';
+    });
+
+    function sendQuery(){
+      var role = document.getElementById("role").value;
+      var query = document.getElementById("query").value;
+      var formData = new URLSearchParams();
+      formData.append("role", role);
+      formData.append("query", query);
+      if(role === "employee"){
+          var email = document.getElementById("email").value;
+          formData.append("email", email);
+      }
+      fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: formData.toString()
+      })
+      .then(response => response.json())
+      .then(data => {
+          var box = document.getElementById("responseBox");
+          box.innerHTML += `<p><strong>You (${role}):</strong> ${query}</p>`;
+          box.innerHTML += `<p><strong>Bot:</strong> ${data.response}</p>`;
+          document.getElementById("query").value = "";
+      });
+    }
+  </script>
+</body>
+</html>
