@@ -1,0 +1,5 @@
+.env
+transcript.txt
+__pycache__/
+sample_audio_for_transcript.mp3
+*.zip
