@@ -3,3 +3,6 @@ transcript.txt
 __pycache__/
 sample_audio_for_transcript.mp3
 *.zip
+/issue_resolved/
+/hr_dashboard_app/static/  
+/hr_dashnoard_app/static/plots/
