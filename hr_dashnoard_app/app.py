@@ -3,14 +3,15 @@ import os
 from flask import Flask, render_template
 from models import get_session, User, Meeting, MeetingParticipant, MeetingTranscript
 from analysis import meeting_transcript_summary, employee_participation_summary, generate_bar_plot, generate_line_plot, generate_meeting_participation_plot
-
+from dotenv import load_dotenv
+load_dotenv()
 
 from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 
 # Update the db_url with your PostgreSQL credentials
-db_url = os.getenv("db_url", "postgresql://username:password@localhost:5432/amas_db")
+db_url = os.getenv("DATABASE_URL", "postgresql://username:password@localhost:5432/amas_db")
 if db_url is None:
     raise ValueError("Database URL not provided. Please set the db_url environment variable.")
 session = get_session(db_url)
