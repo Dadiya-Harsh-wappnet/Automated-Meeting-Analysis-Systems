@@ -10,7 +10,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # Update the db_url with your PostgreSQL credentials
-db_url = os.getenv("db_url", "postgresql://postgres:password@localhost:5433/AMAS")
+db_url = os.getenv("db_url", "postgresql://username:password@localhost:5432/amas_db")
 if db_url is None:
     raise ValueError("Database URL not provided. Please set the db_url environment variable.")
 session = get_session(db_url)
