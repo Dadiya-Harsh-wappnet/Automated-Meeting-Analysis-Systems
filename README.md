@@ -86,7 +86,7 @@ AMAS_dashboard/
 
 1. **Clone the Repository**  
    ```bash
-   git clone https://github.com/yourusername/AMAS-360.git
+   git clone https://github.com/Dadiya-Harsh-wappnet/Automated-Meeting-Analysis-Systems.git
    cd AMAS-360
    ```
 
@@ -168,7 +168,7 @@ AMAS_dashboard/
   ```
 
 - **Database Connection Issues**:
-  Verify your `db_url` settings and ensure your PostgreSQL server is running.
+  Verify your `DATABASE_URL` settings and ensure your PostgreSQL server is running.
 
 - **404 on Favicon**:
   You may ignore the favicon 404 error or add a favicon file in the static folder.

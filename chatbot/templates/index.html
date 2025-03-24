@@ -3,45 +3,113 @@
 <head>
   <meta charset="UTF-8">
   <title>AMAS 360 Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .chat-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #555;
+    }
+    select, input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #2196F3;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1976D2;
+    }
+    #responseBox {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #e9f5ff;
+      border-radius: 4px;
+      min-height: 100px;
+      white-space: pre-wrap;
+    }
+    .message-user {
+      color: #006600;
+      font-weight: bold;
+    }
+    .message-bot {
+      color: #0000cc;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
   <h1>AMAS 360 Chatbot</h1>
-  <form id="chatForm">
-    <label for="role">Select your role:</label>
-    <select id="role" name="role">
-      <option value="employee">Employee</option>
-      <option value="manager">Manager</option>
-      <option value="hr">HR</option>
-    </select>
-    <br><br>
-    <div id="employeeEmailDiv" style="display: none;">
-      <label for="email">Your Email:</label>
-      <input type="text" id="email" name="email" placeholder="employee@example.com">
-      <br><br>
-    </div>
-    <label for="query">Your Query:</label>
-    <input type="text" id="query" name="query" style="width: 300px;" placeholder="Enter your query">
-    <br><br>
-    <button type="button" onclick="sendQuery()">Send</button>
-  </form>
-  <div id="responseBox" style="margin-top:20px; border:1px solid #ccc; padding:10px;"></div>
+  <div class="chat-container">
+    <form id="chatForm">
+      <label for="role">Select your role:</label>
+      <select id="role" name="role">
+        <option value="">--Select Role--</option>
+        <option value="employee">Employee</option>
+        <option value="manager">Manager</option>
+        <option value="hr">HR</option>
+      </select>
+      
+      <div id="employeeNameDiv" style="display: none;">
+        <label for="name">Your Name (e.g., Alice Johnson):</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name">
+      </div>
+      
+      <label for="query">Your Query:</label>
+      <input type="text" id="query" name="query" placeholder="e.g., What is the user id of Alice?">
+      
+      <button type="button" onclick="sendQuery()">Send</button>
+    </form>
+
+    <div id="responseBox"></div>
+  </div>
 
   <script>
-    // Show or hide email input based on selected role.
     document.getElementById('role').addEventListener('change', function() {
       var role = this.value;
-      document.getElementById('employeeEmailDiv').style.display = (role === 'employee') ? 'block' : 'none';
+      document.getElementById('employeeNameDiv').style.display = (role === 'employee' || role === 'hr') ? 'block' : 'none';
     });
 
-    function sendQuery(){
+    function sendQuery() {
       var role = document.getElementById("role").value;
       var query = document.getElementById("query").value;
       var formData = new URLSearchParams();
       formData.append("role", role);
       formData.append("query", query);
-      if(role === "employee"){
-          var email = document.getElementById("email").value;
-          formData.append("email", email);
+      if (role === "employee" || role === "hr") {
+          var name = document.getElementById("name").value;
+          formData.append("name", name);
       }
       fetch("/chat", {
           method: "POST",
@@ -51,8 +119,8 @@
       .then(response => response.json())
       .then(data => {
           var box = document.getElementById("responseBox");
-          box.innerHTML += `<p><strong>You (${role}):</strong> ${query}</p>`;
-          box.innerHTML += `<p><strong>Bot:</strong> ${data.response}</p>`;
+          box.innerHTML += `\n<span class="message-user">You (${role}):</span> ${query}\n`;
+          box.innerHTML += `<span class="message-bot">Bot:</span> ${data.response}\n`;
           document.getElementById("query").value = "";
       });
     }

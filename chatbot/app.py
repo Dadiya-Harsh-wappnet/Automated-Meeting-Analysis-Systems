@@ -1,5 +1,4 @@
 # app.py
-
 from flask import Flask, request, jsonify, render_template
 from chatbot_llm import generate_response
 
@@ -13,12 +12,15 @@ def index():
 def chat():
     role = request.form.get("role", "").lower()
     query = request.form.get("query", "")
-    employee_email = request.form.get("email", "") if role == "employee" else None
+    user_name = request.form.get("name", "") if role in ["employee", "hr"] else None
 
-    if not query or (role == "employee" and not employee_email):
-        return jsonify({"response": "Please provide a valid query and, if you are an employee, your email."}), 400
+    if not query:
+        return jsonify({"response": "Please provide a valid query."}), 400
 
-    response = generate_response(query, role, employee_email)
+    if role == "employee" and not user_name:
+        return jsonify({"response": "Please provide your name to retrieve employee data."}), 400
+
+    response = generate_response(query, role, user_name)
     return jsonify({"response": response})
 
 if __name__ == "__main__":

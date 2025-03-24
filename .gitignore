@@ -8,3 +8,7 @@ sample_audio_for_transcript.mp3
 /hr_dashnoard_app/static/plots/
 /poc/plots/
 /Dhruvin/
+*.docx
+*.pdf
+test1.py
+*.sql
