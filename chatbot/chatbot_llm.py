@@ -66,14 +66,28 @@ memory = SimpleInMemoryChatMessageHistory()
 # Compose the chain using the runnable syntax.
 chain = chat_prompt | llm
 
+import re
+
+def extract_meeting_id(query):
+    """Extracts meeting ID from the query if mentioned."""
+    match = re.search(r"meeting (\d+)", query, re.IGNORECASE)
+    return int(match.group(1)) if match else None
+
+def extract_department(query):
+    """Extracts department name from the query if mentioned."""
+    match = re.search(r"department (\w+)", query, re.IGNORECASE)
+    return match.group(1) if match else None
+
 def generate_response(query: str, role: str, user_name: str = None) -> str:
     """
     Generate a chatbot response based on the user query.
     Prioritizes using db_tools functions for specific data retrieval before querying LLM.
     """
     query_lower = query.lower()
+    
+    meeting_id = extract_meeting_id(query)
+    department = extract_department(query)
 
-    # If a specific tool can handle the request, use it directly.
     if "employee id" in query_lower or "user id" in query_lower:
         return get_user_id_by_name(user_name) if user_name else "Please provide an employee name."
     elif "performance" in query_lower and ("detail" in query_lower or "records" in query_lower):
@@ -81,38 +95,26 @@ def generate_response(query: str, role: str, user_name: str = None) -> str:
     elif "recommended skills" in query_lower:
         return get_skill_recommendations_by_name(user_name) if user_name else "Please provide an employee name."
     elif "meeting transcript" in query_lower and "recent" in query_lower:
-        return get_recent_meeting_transcripts(meeting_id=1)  # Example meeting ID
+        if meeting_id:
+            return get_recent_meeting_transcripts(meeting_id=meeting_id)
+        return "Please specify a meeting ID."
     elif "department roster" in query_lower:
-        return get_department_roster(department="Engineering")  # Example department
+        if department:
+            return get_department_roster(department=department)
+        return "Please specify a department."
     elif "meeting participants" in query_lower:
-        return get_meeting_participants(meeting_id=1)  # Example meeting ID
-    
+        if meeting_id:
+            return get_meeting_participants(meeting_id=meeting_id)
+        return "Please specify a meeting ID."
+
     # Otherwise, build context for a general query.
-    if role.lower() == "employee":
-        context = (
-            f"You are an assistant for employees. The employee's name is {user_name}. "
-            "Provide only information available from the database context. If no record is found, say so."
-        )
-    elif role.lower() == "manager":
-        context = (
-            "You are an assistant for managers. Provide insights solely from the database context about meeting transcripts or performance."
-        )
-    elif role.lower() == "hr":
-        if user_name:
-            context = (
-                f"You are an HR assistant. The query is regarding employee {user_name}. "
-                "Provide only the available data from the database for this employee."
-            )
-        else:
-            context = (
-                "You are an HR assistant. Provide comprehensive details solely from the database context about employee performance and roster."
-            )
-    else:
-        context = "You are a helpful assistant. Provide only the available database information."
+    context = f"You are an assistant. Role: {role}. "
+    if user_name:
+        context += f"User: {user_name}. "
     
     db_context = retrieve_db_context(role, user_name)
     full_context = f"{context}\nDatabase Info:\n{db_context}"
-    
+
     logger.info(f"Received query for role '{role}': {query}")
     chat_history_text = "\n".join([msg.content for msg in memory.messages])
     
