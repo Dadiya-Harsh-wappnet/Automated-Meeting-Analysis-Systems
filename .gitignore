@@ -15,4 +15,4 @@ test1.py
 /Project/frontend/node_modules/
 node_modules/
 Project/frontend/node_modules
-Project/backend/migrations/
+Project/backend/migrations/__pycache__/
