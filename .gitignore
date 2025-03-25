@@ -12,3 +12,6 @@ sample_audio_for_transcript.mp3
 *.pdf
 test1.py
 *.sql
+/Project/frontend/node_modules/
+node_modules/
+Project/frontend/node_modules

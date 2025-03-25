@@ -129,3 +129,31 @@ def get_skill_recommendations_by_name(user_name: str) -> str:
         response = f"No record found for employee '{user_name}'."
     session.close()
     return response
+
+
+def store_transcript(data):
+    """
+    Save transcript data.
+    Data format should be a dict:
+      {
+         "meeting_id": <int>,
+         "transcripts": [
+             {"speaker": "Speaker 1", "transcript": "Text", "start": 0.0, "end": 5.0},
+             ...
+         ]
+      }
+    """
+    session = get_session()
+    meeting_id = data.get("meeting_id")
+    transcripts = data.get("transcripts", [])
+    for seg in transcripts:
+        record = LearningTranscript(
+            meeting_id=meeting_id,
+            speaker_label=seg.get("speaker", "Unknown"),
+            transcript=seg.get("transcript", ""),
+            start_time=seg.get("start", 0.0),
+            end_time=seg.get("end", 0.0)
+        )
+        session.add(record)
+    session.commit()
+    session.close()
