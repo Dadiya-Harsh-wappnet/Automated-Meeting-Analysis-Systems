@@ -157,3 +157,81 @@ def store_transcript(data):
         session.add(record)
     session.commit()
     session.close()
+
+from sqlalchemy.orm import Session
+from models import get_session, UserInfo, UserPerformance, LearningMeeting, LearningTranscript, MeetingParticipant, UserSkillRecommendation, Skills, ChatHistory
+
+# Initialize DB session
+session = get_session()
+
+def get_personal_data(user_id):
+    """Fetch personal details and performance data for a given user."""
+    user = session.query(UserInfo).filter_by(id=user_id).first()
+    if not user:
+        return "User not found."
+    
+    performance = session.query(UserPerformance).filter_by(user_id=user_id).order_by(UserPerformance.performance_date.desc()).first()
+    
+    response = {
+        "Name": user.name,
+        "Email": user.email,
+        "Role": user.role,
+        "Department": user.department,
+        "Latest Performance Score": performance.performance_score if performance else "No data available"
+    }
+    
+    return response
+
+def get_recent_meeting_transcripts(meeting_id):
+    """Fetch transcripts of a given meeting."""
+    transcripts = session.query(LearningTranscript).filter_by(meeting_id=meeting_id).all()
+    if not transcripts:
+        return "No transcripts found for this meeting."
+    
+    response = [{"Speaker": t.speaker_label, "Transcript": t.transcript} for t in transcripts]
+    return response
+
+def get_team_data(manager_id):
+    """Fetch team members and their latest performance scores for a given manager."""
+    employees = session.query(UserInfo).filter_by(role="Employee").all()
+    
+    if not employees:
+        return "No team data available."
+
+    team_data = []
+    for employee in employees:
+        performance = session.query(UserPerformance).filter_by(user_id=employee.id).order_by(UserPerformance.performance_date.desc()).first()
+        team_data.append({
+            "Employee Name": employee.name,
+            "Email": employee.email,
+            "Department": employee.department,
+            "Latest Performance Score": performance.performance_score if performance else "No data available"
+        })
+
+    return team_data
+
+def get_all_employee_data():
+    """Fetch all employees' details (for HR)."""
+    employees = session.query(UserInfo).filter_by(role="Employee").all()
+    
+    if not employees:
+        return "No employee data found."
+    
+    response = []
+    for emp in employees:
+        performance = session.query(UserPerformance).filter_by(user_id=emp.id).order_by(UserPerformance.performance_date.desc()).first()
+        response.append({
+            "Name": emp.name,
+            "Email": emp.email,
+            "Department": emp.department,
+            "Latest Performance Score": performance.performance_score if performance else "No data available"
+        })
+    
+    return response
+
+def store_chat_history(user_id, message, message_type="user"):
+    """Store chatbot conversation history."""
+    chat_entry = ChatHistory(user_id=user_id, message=message, message_type=message_type)
+    session.add(chat_entry)
+    session.commit()
+
