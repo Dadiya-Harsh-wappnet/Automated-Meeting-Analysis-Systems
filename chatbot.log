@@ -64,3 +64,316 @@ There is no information about "meeting 1" in the provided database.
 2025-03-26 11:28:47,001 - __main__ - INFO - LLM processing query for role 'hr': How is Bob performing?
 2025-03-26 11:28:47,305 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-26 11:28:47,335 - __main__ - INFO - Generated LLM response: Bob Smith's performance score is 4.0, as of 2025-03-21. He recently mentioned that their Q1 numbers exceeded expectations.
+2025-03-26 13:40:41,288 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-26 13:40:41,288 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-26 13:40:41,298 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 13:40:48,290 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 13:40:48,295 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 13:40:55,389 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 13:40:55] "[31m[1mGET /api/auth/login HTTP/1.1[0m" 405 -
+2025-03-26 13:40:55,459 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 13:40:55] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-26 13:41:24,769 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 13:41:24] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 13:41:25,119 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 13:41:25] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 500 -
+2025-03-26 13:58:21,016 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-26 13:58:21,016 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-26 13:58:21,018 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 13:58:28,190 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 13:58:28,190 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 13:58:34,528 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 13:58:34] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 13:58:34,879 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 13:58:34] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 500 -
+2025-03-26 14:04:04,161 - werkzeug - INFO -  * Detected change in 'E:\\Wappnet internship\\Automated Meeting Analysis System\\Project\\backend\\routes\\meetings.py', reloading
+2025-03-26 14:04:04,703 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 14:04:11,858 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 14:04:11,864 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 14:04:47,933 - werkzeug - INFO -  * Detected change in 'E:\\Wappnet internship\\Automated Meeting Analysis System\\Project\\backend\\routes\\meetings.py', reloading
+2025-03-26 14:04:48,548 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 14:11:42,448 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-26 14:11:42,449 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-26 14:11:42,451 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 14:11:49,842 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 14:11:49,849 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 14:11:49,865 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:11:49] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 14:11:49,869 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:11:49] "[31m[1mPOST /api/auth/register HTTP/1.1[0m" 400 -
+2025-03-26 14:12:04,292 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:12:04] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 14:12:04,626 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:12:04] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 500 -
+2025-03-26 14:14:25,189 - werkzeug - INFO -  * Detected change in 'E:\\Wappnet internship\\Automated Meeting Analysis System\\Project\\backend\\routes\\auth.py', reloading
+2025-03-26 14:14:25,856 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 14:14:33,806 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 14:14:33,822 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 14:14:39,891 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:14:39] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 14:14:40,263 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 14:14:40,272 - sqlalchemy.engine.Engine - INFO - SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email, users.password_hash AS users_password_hash, users.password AS users_password, users.role_id AS users_role_id, users.department_id AS users_department_id, users.manager_id AS users_manager_id, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s
+2025-03-26 14:14:40,272 - sqlalchemy.engine.Engine - INFO - [generated in 0.00183s] {'email_1': 'harshd.wappnet@outlook.com', 'param_1': 1}
+2025-03-26 14:14:40,598 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:14:40] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 500 -
+2025-03-26 14:18:22,972 - werkzeug - INFO -  * Detected change in 'E:\\Wappnet internship\\Automated Meeting Analysis System\\Project\\backend\\models.py', reloading
+2025-03-26 14:18:23,620 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 14:18:30,931 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 14:18:30,937 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 14:18:32,237 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:18:32] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 14:18:32,593 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 14:18:32,597 - sqlalchemy.engine.Engine - INFO - SELECT users.id AS users_id, users.first_name AS users_first_name, users.last_name AS users_last_name, users.name AS users_name, users.email AS users_email, users.password_hash AS users_password_hash, users.password AS users_password, users.role_id AS users_role_id, users.department_id AS users_department_id, users.manager_id AS users_manager_id, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s
+2025-03-26 14:18:32,598 - sqlalchemy.engine.Engine - INFO - [generated in 0.00076s] {'email_1': 'harshd.wappnet@outlook.com', 'param_1': 1}
+2025-03-26 14:18:32,803 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:18:32] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 500 -
+2025-03-26 14:20:38,325 - werkzeug - INFO -  * Detected change in 'E:\\Wappnet internship\\Automated Meeting Analysis System\\Project\\backend\\models.py', reloading
+2025-03-26 14:20:38,951 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 14:21:30,103 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-26 14:21:30,103 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-26 14:21:30,103 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 14:21:37,017 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 14:21:37,025 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 14:22:13,132 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:22:13] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 14:22:13,435 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 14:22:13,439 - sqlalchemy.engine.Engine - INFO - SELECT users.id AS users_id, users.first_name AS users_first_name, users.last_name AS users_last_name, users.name AS users_name, users.email AS users_email, users.password_hash AS users_password_hash, users.password AS users_password, users.role_id AS users_role_id, users.department_id AS users_department_id, users.manager_id AS users_manager_id, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s
+2025-03-26 14:22:13,439 - sqlalchemy.engine.Engine - INFO - [generated in 0.00073s] {'email_1': 'harshd.wappnet@outlook.com', 'param_1': 1}
+2025-03-26 14:22:13,697 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:22:13] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 500 -
+2025-03-26 14:24:20,172 - werkzeug - INFO -  * Detected change in 'E:\\Wappnet internship\\Automated Meeting Analysis System\\Project\\backend\\routes\\auth.py', reloading
+2025-03-26 14:24:20,796 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 14:24:27,945 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 14:24:27,959 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 14:27:20,536 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-26 14:27:20,536 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-26 14:27:20,538 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 14:27:28,005 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 14:27:28,010 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 14:27:40,411 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:27:40] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 14:27:40,899 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:27:40] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 500 -
+2025-03-26 14:31:42,215 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-26 14:31:42,215 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-26 14:31:42,217 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 14:31:49,697 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 14:31:49,722 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 14:31:49,778 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:31:49] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 14:31:49,870 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 14:31:49,872 - sqlalchemy.engine.Engine - INFO - SELECT roles.id AS roles_id, roles.name AS roles_name 
+FROM roles 
+WHERE roles.name = %(name_1)s 
+ LIMIT %(param_1)s
+2025-03-26 14:31:49,875 - sqlalchemy.engine.Engine - INFO - [generated in 0.00173s] {'name_1': 'Employee', 'param_1': 1}
+2025-03-26 14:31:49,879 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-03-26 14:31:49,879 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:31:49] "[31m[1mPOST /api/auth/register HTTP/1.1[0m" 400 -
+2025-03-26 14:31:58,863 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:31:58] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 14:31:59,133 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 14:31:59,134 - sqlalchemy.engine.Engine - INFO - SELECT roles.id AS roles_id, roles.name AS roles_name 
+FROM roles 
+WHERE roles.name = %(name_1)s 
+ LIMIT %(param_1)s
+2025-03-26 14:31:59,135 - sqlalchemy.engine.Engine - INFO - [cached since 9.263s ago] {'name_1': 'Employee', 'param_1': 1}
+2025-03-26 14:31:59,141 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-03-26 14:31:59,145 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:31:59] "[31m[1mPOST /api/auth/register HTTP/1.1[0m" 400 -
+2025-03-26 14:32:30,434 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-26 14:32:30,434 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-26 14:32:30,436 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 14:32:37,687 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 14:32:37,694 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 14:32:37,709 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:32:37] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 14:32:37,742 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 14:32:37,742 - sqlalchemy.engine.Engine - INFO - SELECT roles.id AS roles_id, roles.name AS roles_name 
+FROM roles 
+WHERE roles.name = %(name_1)s 
+ LIMIT %(param_1)s
+2025-03-26 14:32:37,742 - sqlalchemy.engine.Engine - INFO - [generated in 0.00044s] {'name_1': 'Employee', 'param_1': 1}
+2025-03-26 14:32:37,750 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-03-26 14:32:37,750 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 14:32:37] "[31m[1mPOST /api/auth/register HTTP/1.1[0m" 400 -
+2025-03-26 15:12:20,311 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-26 15:12:20,311 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-26 15:12:20,327 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 15:12:28,236 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 15:12:28,252 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 15:12:44,057 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:12:44] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 15:12:44,324 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 15:12:44,324 - sqlalchemy.engine.Engine - INFO - SELECT roles.id AS roles_id, roles.name AS roles_name 
+FROM roles 
+WHERE roles.name = %(name_1)s 
+ LIMIT %(param_1)s
+2025-03-26 15:12:44,324 - sqlalchemy.engine.Engine - INFO - [generated in 0.00042s] {'name_1': 'Employee', 'param_1': 1}
+2025-03-26 15:12:44,342 - sqlalchemy.engine.Engine - INFO - SELECT users.id AS users_id, users.first_name AS users_first_name, users.last_name AS users_last_name, users.name AS users_name, users.email AS users_email, users.password_hash AS users_password_hash, users.password AS users_password, users.role_id AS users_role_id, users.department_id AS users_department_id, users.manager_id AS users_manager_id, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s
+2025-03-26 15:12:44,342 - sqlalchemy.engine.Engine - INFO - [generated in 0.00059s] {'email_1': 'harshd.wappnet@outlook.com', 'param_1': 1}
+2025-03-26 15:12:44,557 - sqlalchemy.engine.Engine - INFO - INSERT INTO users (first_name, last_name, name, email, password_hash, password, role_id, department_id, manager_id, created_at) VALUES (%(first_name)s, %(last_name)s, %(name)s, %(email)s, %(password_hash)s, %(password)s, %(role_id)s, %(department_id)s, %(manager_id)s, %(created_at)s) RETURNING users.id
+2025-03-26 15:12:44,557 - sqlalchemy.engine.Engine - INFO - [generated in 0.00059s] {'first_name': None, 'last_name': None, 'name': 'HARSH DADIYA', 'email': 'harshd.wappnet@outlook.com', 'password_hash': '$2b$12$pStN264ix7Kcc/zmrRk8uugZlQNNZQ./OZC3FRVtxPpTrOyG61Vfm', 'password': None, 'role_id': 3, 'department_id': None, 'manager_id': None, 'created_at': datetime.datetime(2025, 3, 26, 9, 42, 44, 557549)}
+2025-03-26 15:12:44,557 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-03-26 15:12:44,673 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:12:44] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 500 -
+2025-03-26 15:15:43,645 - werkzeug - INFO -  * Detected change in 'E:\\Wappnet internship\\Automated Meeting Analysis System\\Project\\backend\\routes\\auth.py', reloading
+2025-03-26 15:15:44,227 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 15:15:51,307 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 15:15:51,307 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 15:15:51,391 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:15:51] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 15:15:51,734 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 15:15:51,735 - sqlalchemy.engine.Engine - INFO - SELECT roles.id AS roles_id, roles.name AS roles_name 
+FROM roles 
+WHERE roles.name = %(name_1)s 
+ LIMIT %(param_1)s
+2025-03-26 15:15:51,736 - sqlalchemy.engine.Engine - INFO - [generated in 0.00059s] {'name_1': 'Employee', 'param_1': 1}
+2025-03-26 15:15:51,741 - sqlalchemy.engine.Engine - INFO - SELECT users.id AS users_id, users.first_name AS users_first_name, users.last_name AS users_last_name, users.name AS users_name, users.email AS users_email, users.password_hash AS users_password_hash, users.password AS users_password, users.role_id AS users_role_id, users.department_id AS users_department_id, users.manager_id AS users_manager_id, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s
+2025-03-26 15:15:51,742 - sqlalchemy.engine.Engine - INFO - [generated in 0.00059s] {'email_1': 'harshd.wappnet@outlook.com', 'param_1': 1}
+2025-03-26 15:15:51,973 - sqlalchemy.engine.Engine - INFO - INSERT INTO users (first_name, last_name, name, email, password_hash, password, role_id, department_id, manager_id, created_at) VALUES (%(first_name)s, %(last_name)s, %(name)s, %(email)s, %(password_hash)s, %(password)s, %(role_id)s, %(department_id)s, %(manager_id)s, %(created_at)s) RETURNING users.id
+2025-03-26 15:15:51,974 - sqlalchemy.engine.Engine - INFO - [generated in 0.00085s] {'first_name': 'HARSH', 'last_name': 'DADIYA', 'name': 'HARSH DADIYA', 'email': 'harshd.wappnet@outlook.com', 'password_hash': '$2b$12$LtOBpFSynVg.qNiIOH269O9uRIfKbjl7By/Brtr9wym2TLBs/yJc2', 'password': None, 'role_id': 3, 'department_id': None, 'manager_id': None, 'created_at': datetime.datetime(2025, 3, 26, 9, 45, 51, 973234)}
+2025-03-26 15:15:51,975 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-03-26 15:15:52,040 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:15:52] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 500 -
+2025-03-26 15:16:15,613 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-26 15:16:15,614 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-26 15:16:15,618 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 15:16:22,683 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 15:16:22,689 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 15:16:36,465 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:16:36] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 15:16:36,833 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 15:16:36,835 - sqlalchemy.engine.Engine - INFO - SELECT roles.id AS roles_id, roles.name AS roles_name 
+FROM roles 
+WHERE roles.name = %(name_1)s 
+ LIMIT %(param_1)s
+2025-03-26 15:16:36,836 - sqlalchemy.engine.Engine - INFO - [generated in 0.00062s] {'name_1': 'Employee', 'param_1': 1}
+2025-03-26 15:16:36,843 - sqlalchemy.engine.Engine - INFO - SELECT users.id AS users_id, users.first_name AS users_first_name, users.last_name AS users_last_name, users.name AS users_name, users.email AS users_email, users.password_hash AS users_password_hash, users.password AS users_password, users.role_id AS users_role_id, users.department_id AS users_department_id, users.manager_id AS users_manager_id, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s
+2025-03-26 15:16:36,844 - sqlalchemy.engine.Engine - INFO - [generated in 0.00094s] {'email_1': 'harshd.wappnet@outlook.com', 'param_1': 1}
+2025-03-26 15:16:37,129 - sqlalchemy.engine.Engine - INFO - INSERT INTO users (first_name, last_name, name, email, password_hash, password, role_id, department_id, manager_id, created_at) VALUES (%(first_name)s, %(last_name)s, %(name)s, %(email)s, %(password_hash)s, %(password)s, %(role_id)s, %(department_id)s, %(manager_id)s, %(created_at)s) RETURNING users.id
+2025-03-26 15:16:37,129 - sqlalchemy.engine.Engine - INFO - [generated in 0.00059s] {'first_name': 'HARSH', 'last_name': 'DADIYA', 'name': 'HARSH DADIYA', 'email': 'harshd.wappnet@outlook.com', 'password_hash': '$2b$12$bv5wPxoKEMzGa4r82dQgP.OSailrbTCEZGEFWfNP6sYjO8gJ0VIt.', 'password': None, 'role_id': 3, 'department_id': None, 'manager_id': None, 'created_at': datetime.datetime(2025, 3, 26, 9, 46, 37, 129916)}
+2025-03-26 15:16:37,129 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-03-26 15:16:37,207 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:16:37] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 500 -
+2025-03-26 15:18:37,747 - werkzeug - INFO -  * Detected change in 'E:\\Wappnet internship\\Automated Meeting Analysis System\\Project\\backend\\models.py', reloading
+2025-03-26 15:18:38,343 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 15:18:46,217 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 15:18:46,227 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 15:18:56,889 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:18:56] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 15:18:57,205 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 15:18:57,205 - sqlalchemy.engine.Engine - INFO - SELECT roles.id AS roles_id, roles.name AS roles_name 
+FROM roles 
+WHERE roles.name = %(name_1)s 
+ LIMIT %(param_1)s
+2025-03-26 15:18:57,205 - sqlalchemy.engine.Engine - INFO - [generated in 0.00109s] {'name_1': 'Employee', 'param_1': 1}
+2025-03-26 15:18:57,232 - sqlalchemy.engine.Engine - INFO - SELECT users.id AS users_id, users.first_name AS users_first_name, users.last_name AS users_last_name, users.name AS users_name, users.email AS users_email, users.password_hash AS users_password_hash, users.password AS users_password, users.role_id AS users_role_id, users.department_id AS users_department_id, users.manager_id AS users_manager_id, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s
+2025-03-26 15:18:57,233 - sqlalchemy.engine.Engine - INFO - [generated in 0.00114s] {'email_1': 'harshd.wappnet@outlook.com', 'param_1': 1}
+2025-03-26 15:18:57,788 - sqlalchemy.engine.Engine - INFO - INSERT INTO users (first_name, last_name, name, email, password_hash, password, role_id, department_id, manager_id, created_at) VALUES (%(first_name)s, %(last_name)s, %(name)s, %(email)s, %(password_hash)s, %(password)s, %(role_id)s, %(department_id)s, %(manager_id)s, %(created_at)s) RETURNING users.id
+2025-03-26 15:18:57,788 - sqlalchemy.engine.Engine - INFO - [generated in 0.00097s] {'first_name': 'HARSH', 'last_name': 'DADIYA', 'name': 'HARSH DADIYA', 'email': 'harshd.wappnet@outlook.com', 'password_hash': '$2b$12$6P/M06IozGuyqqnUcrVrtOQhF7yn/sfUVNoR/CEEWGwjAqFDMBzyG', 'password': None, 'role_id': 3, 'department_id': None, 'manager_id': None, 'created_at': datetime.datetime(2025, 3, 26, 9, 48, 57, 788943)}
+2025-03-26 15:18:57,788 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-03-26 15:18:57,888 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:18:57] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 500 -
+2025-03-26 15:19:22,346 - werkzeug - INFO -  * Detected change in 'E:\\Wappnet internship\\Automated Meeting Analysis System\\Project\\backend\\models.py', reloading
+2025-03-26 15:19:23,196 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 15:19:30,544 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 15:19:30,550 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 15:21:13,931 - werkzeug - INFO -  * Detected change in 'E:\\Wappnet internship\\Automated Meeting Analysis System\\Project\\backend\\routes\\auth.py', reloading
+2025-03-26 15:21:14,603 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 15:21:21,733 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 15:21:21,733 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 15:21:38,343 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-26 15:21:38,343 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-26 15:21:38,347 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 15:21:45,608 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 15:21:45,613 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 15:21:56,621 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:21:56] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 15:21:56,983 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 15:21:56,987 - sqlalchemy.engine.Engine - INFO - SELECT roles.id AS roles_id, roles.name AS roles_name 
+FROM roles 
+WHERE roles.name = %(name_1)s 
+ LIMIT %(param_1)s
+2025-03-26 15:21:56,987 - sqlalchemy.engine.Engine - INFO - [generated in 0.00084s] {'name_1': 'Employee', 'param_1': 1}
+2025-03-26 15:21:56,997 - sqlalchemy.engine.Engine - INFO - SELECT users.id AS users_id, users.first_name AS users_first_name, users.last_name AS users_last_name, users.name AS users_name, users.email AS users_email, users.password_hash AS users_password_hash, users.password AS users_password, users.role_id AS users_role_id, users.department_id AS users_department_id, users.manager_id AS users_manager_id, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s
+2025-03-26 15:21:56,998 - sqlalchemy.engine.Engine - INFO - [generated in 0.00134s] {'email_1': 'harshd.wappnet@outlook.com', 'param_1': 1}
+2025-03-26 15:21:57,265 - sqlalchemy.engine.Engine - INFO - INSERT INTO users (first_name, last_name, name, email, password_hash, password, role_id, department_id, manager_id, created_at) VALUES (%(first_name)s, %(last_name)s, %(name)s, %(email)s, %(password_hash)s, %(password)s, %(role_id)s, %(department_id)s, %(manager_id)s, %(created_at)s) RETURNING users.id
+2025-03-26 15:21:57,265 - sqlalchemy.engine.Engine - INFO - [generated in 0.00059s] {'first_name': 'HARSH', 'last_name': 'DADIYA', 'name': 'HARSH DADIYA', 'email': 'harshd.wappnet@outlook.com', 'password_hash': '$2b$12$hB0zJax5CVtnX5jKWwMsQOCoEwNiFkLQTkgE1EJj.G7LbA6R4DKPq', 'password': '123', 'role_id': 3, 'department_id': None, 'manager_id': None, 'created_at': datetime.datetime(2025, 3, 26, 9, 51, 57, 265323)}
+2025-03-26 15:21:57,268 - sqlalchemy.engine.Engine - INFO - COMMIT
+2025-03-26 15:21:57,276 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:21:57] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 201 -
+2025-03-26 15:22:13,813 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:22:13] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+2025-03-26 15:22:14,123 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 15:22:14,123 - sqlalchemy.engine.Engine - INFO - SELECT users.id AS users_id, users.first_name AS users_first_name, users.last_name AS users_last_name, users.name AS users_name, users.email AS users_email, users.password_hash AS users_password_hash, users.password AS users_password, users.role_id AS users_role_id, users.department_id AS users_department_id, users.manager_id AS users_manager_id, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s
+2025-03-26 15:22:14,123 - sqlalchemy.engine.Engine - INFO - [cached since 17.14s ago] {'email_1': 'harshd.wappnet@gmail.com', 'param_1': 1}
+2025-03-26 15:22:14,123 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-03-26 15:22:14,139 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:22:14] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+2025-03-26 15:22:43,160 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:22:43] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+2025-03-26 15:22:43,472 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 15:22:43,472 - sqlalchemy.engine.Engine - INFO - SELECT users.id AS users_id, users.first_name AS users_first_name, users.last_name AS users_last_name, users.name AS users_name, users.email AS users_email, users.password_hash AS users_password_hash, users.password AS users_password, users.role_id AS users_role_id, users.department_id AS users_department_id, users.manager_id AS users_manager_id, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s
+2025-03-26 15:22:43,472 - sqlalchemy.engine.Engine - INFO - [cached since 46.49s ago] {'email_1': 'harshd.wappnet@outlook.com', 'param_1': 1}
+2025-03-26 15:22:43,888 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-03-26 15:22:43,889 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:22:43] "POST /api/auth/login HTTP/1.1" 200 -
+2025-03-26 15:22:43,918 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:22:43] "[33mGET /api/meetings/performance HTTP/1.1[0m" 404 -
+2025-03-26 15:22:51,069 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:22:51] "OPTIONS /api/chatbot/ HTTP/1.1" 200 -
+2025-03-26 15:22:51,329 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:22:51] "[31m[1mPOST /api/chatbot/ HTTP/1.1[0m" 422 -
+2025-03-26 15:23:01,071 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:23:01] "OPTIONS /api/chatbot/ HTTP/1.1" 200 -
+2025-03-26 15:23:01,386 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:23:01] "[31m[1mPOST /api/chatbot/ HTTP/1.1[0m" 422 -
+2025-03-26 15:29:03,929 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:29:03] "OPTIONS /api/chatbot/ HTTP/1.1" 200 -
+2025-03-26 15:29:04,185 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:29:04] "[31m[1mPOST /api/chatbot/ HTTP/1.1[0m" 422 -
+2025-03-26 15:40:51,232 - werkzeug - INFO -  * Detected change in 'E:\\Wappnet internship\\Automated Meeting Analysis System\\Project\\backend\\routes\\auth.py', reloading
+2025-03-26 15:40:51,790 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 15:40:58,901 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 15:40:58,907 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 15:41:32,090 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:41:32] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+2025-03-26 15:41:32,506 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 15:41:32,520 - sqlalchemy.engine.Engine - INFO - SELECT users.id AS users_id, users.first_name AS users_first_name, users.last_name AS users_last_name, users.name AS users_name, users.email AS users_email, users.password_hash AS users_password_hash, users.password AS users_password, users.role_id AS users_role_id, users.department_id AS users_department_id, users.manager_id AS users_manager_id, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s
+2025-03-26 15:41:32,521 - sqlalchemy.engine.Engine - INFO - [generated in 0.00178s] {'email_1': 'harshd.wappnet@outlook.com', 'param_1': 1}
+2025-03-26 15:41:33,072 - sqlalchemy.engine.Engine - INFO - SELECT roles.id AS roles_id, roles.name AS roles_name 
+FROM roles 
+WHERE roles.id = %(pk_1)s
+2025-03-26 15:41:33,072 - sqlalchemy.engine.Engine - INFO - [generated in 0.00057s] {'pk_1': 3}
+2025-03-26 15:41:33,072 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-03-26 15:41:33,072 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:41:33] "POST /api/auth/login HTTP/1.1" 200 -
+2025-03-26 15:41:39,855 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:41:39] "OPTIONS /api/chatbot/ HTTP/1.1" 200 -
+2025-03-26 15:41:40,178 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:41:40] "[31m[1mPOST /api/chatbot/ HTTP/1.1[0m" 422 -
+2025-03-26 15:44:19,485 - werkzeug - INFO -  * Detected change in 'E:\\Wappnet internship\\Automated Meeting Analysis System\\Project\\backend\\routes\\chatbot.py', reloading
+2025-03-26 15:44:20,172 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 15:44:27,314 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 15:44:27,314 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 15:45:40,431 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:45:40] "OPTIONS /api/chatbot/ HTTP/1.1" 200 -
+2025-03-26 15:45:40,702 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 15:45:40] "[31m[1mPOST /api/chatbot/ HTTP/1.1[0m" 422 -
+2025-03-26 15:59:50,916 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-26 15:59:50,916 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-26 15:59:50,920 - werkzeug - INFO -  * Restarting with stat
+2025-03-26 15:59:59,479 - werkzeug - WARNING -  * Debugger is active!
+2025-03-26 15:59:59,489 - werkzeug - INFO -  * Debugger PIN: 715-546-338
+2025-03-26 16:01:03,169 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 16:01:03] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+2025-03-26 16:01:03,535 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-03-26 16:01:03,535 - sqlalchemy.engine.Engine - INFO - SELECT roles.id AS roles_id, roles.name AS roles_name 
+FROM roles 
+WHERE roles.name = %(name_1)s 
+ LIMIT %(param_1)s
+2025-03-26 16:01:03,535 - sqlalchemy.engine.Engine - INFO - [generated in 0.00132s] {'name_1': 'Manager', 'param_1': 1}
+2025-03-26 16:01:03,560 - sqlalchemy.engine.Engine - INFO - SELECT users.id AS users_id, users.first_name AS users_first_name, users.last_name AS users_last_name, users.name AS users_name, users.email AS users_email, users.password_hash AS users_password_hash, users.password AS users_password, users.role_id AS users_role_id, users.department_id AS users_department_id, users.manager_id AS users_manager_id, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = %(email_1)s 
+ LIMIT %(param_1)s
+2025-03-26 16:01:03,560 - sqlalchemy.engine.Engine - INFO - [generated in 0.00171s] {'email_1': 'hk.wappnet@gmail.com', 'param_1': 1}
+2025-03-26 16:01:03,820 - sqlalchemy.engine.Engine - INFO - INSERT INTO users (first_name, last_name, name, email, password_hash, password, role_id, department_id, manager_id, created_at) VALUES (%(first_name)s, %(last_name)s, %(name)s, %(email)s, %(password_hash)s, %(password)s, %(role_id)s, %(department_id)s, %(manager_id)s, %(created_at)s) RETURNING users.id
+2025-03-26 16:01:03,820 - sqlalchemy.engine.Engine - INFO - [generated in 0.00056s] {'first_name': 'Hitesh', 'last_name': 'Kumar', 'name': 'Hitesh Kumar', 'email': 'hk.wappnet@gmail.com', 'password_hash': '$2b$12$FgA02erqyDr0P.qhIMPTheBUWKzOACQG.oZcvuEmH4baWBOZbIlqm', 'password': None, 'role_id': 2, 'department_id': None, 'manager_id': None, 'created_at': datetime.datetime(2025, 3, 26, 10, 31, 3, 820914)}
+2025-03-26 16:01:03,832 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-03-26 16:01:03,895 - werkzeug - INFO - 127.0.0.1 - - [26/Mar/2025 16:01:03] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 500 -
+2025-03-26 16:02:45,299 - werkzeug - INFO -  * Detected change in 'E:\\Wappnet internship\\Automated Meeting Analysis System\\Project\\backend\\routes\\auth.py', reloading
+2025-03-26 16:02:46,224 - werkzeug - INFO -  * Restarting with stat
