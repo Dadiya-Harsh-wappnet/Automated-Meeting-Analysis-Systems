@@ -1,24 +1,7 @@
-# # db_tool.py
-# from models import get_session, UserInfo
-
-# def get_user_id_by_name(user_name: str) -> str:
-#     """
-#     Retrieves the user ID for the given user name from the database.
-#     Uses case-insensitive partial matching.
-#     """
-#     session = get_session()
-#     user_name = user_name.strip()
-#     user = session.query(UserInfo).filter(UserInfo.name.ilike(f'%{user_name}%')).first()
-#     session.close()
-#     if user:
-#         return f"Employee ID for {user.name} is {user.id}."
-#     else:
-#         return f"No record found for employee '{user_name}'."
-
-# db_tools.py
+#db_tool.py
 import logging
 from sqlalchemy import desc
-from models import get_session, UserInfo, UserPerformance, LearningTranscript, MeetingParticipant, UserSkillRecommendation, Skills
+from models import get_session, UserInfo, UserPerformance, LearningTranscript, MeetingParticipant, UserSkillRecommendation, Skills, ChatHistory
 
 logger = logging.getLogger(__name__)
 
@@ -43,6 +26,7 @@ def get_employee_performance_by_name(user_name: str) -> str:
     session = get_session()
     user_name = user_name.strip()
     user = session.query(UserInfo).filter(UserInfo.name.ilike(f'%{user_name}%')).first()
+    
     response = ""
     if user:
         performances = session.query(UserPerformance).filter(UserPerformance.user_id == user.id).all()
@@ -130,15 +114,14 @@ def get_skill_recommendations_by_name(user_name: str) -> str:
     session.close()
     return response
 
-
-def store_transcript(data):
+def store_transcript(data: dict) -> None:
     """
     Save transcript data.
     Data format should be a dict:
       {
-         "meeting_id": <int>,
-         "transcripts": [
-             {"speaker": "Speaker 1", "transcript": "Text", "start": 0.0, "end": 5.0},
+         'meeting_id': <int>,
+         'transcripts': [
+             {'speaker': 'Speaker 1', 'transcript': 'Text', 'start': 0.0, 'end': 5.0},
              ...
          ]
       }
@@ -158,17 +141,12 @@ def store_transcript(data):
     session.commit()
     session.close()
 
-from sqlalchemy.orm import Session
-from models import get_session, UserInfo, UserPerformance, LearningMeeting, LearningTranscript, MeetingParticipant, UserSkillRecommendation, Skills, ChatHistory
-
-# Initialize DB session
-session = get_session()
-
-def get_personal_data(user_id):
+def get_personal_data(user_id: int) -> dict:
     """Fetch personal details and performance data for a given user."""
+    session = get_session()
     user = session.query(UserInfo).filter_by(id=user_id).first()
     if not user:
-        return "User not found."
+        return {"error": "User not found."}
     
     performance = session.query(UserPerformance).filter_by(user_id=user_id).order_by(UserPerformance.performance_date.desc()).first()
     
@@ -180,23 +158,27 @@ def get_personal_data(user_id):
         "Latest Performance Score": performance.performance_score if performance else "No data available"
     }
     
+    session.close()
     return response
 
-def get_recent_meeting_transcripts(meeting_id):
+def get_recent_meeting_transcripts_by_meeting(meeting_id: int) -> list:
     """Fetch transcripts of a given meeting."""
+    session = get_session()
     transcripts = session.query(LearningTranscript).filter_by(meeting_id=meeting_id).all()
     if not transcripts:
-        return "No transcripts found for this meeting."
+        return []
     
     response = [{"Speaker": t.speaker_label, "Transcript": t.transcript} for t in transcripts]
+    session.close()
     return response
 
-def get_team_data(manager_id):
+def get_team_data(manager_id: int) -> list:
     """Fetch team members and their latest performance scores for a given manager."""
+    session = get_session()
     employees = session.query(UserInfo).filter_by(role="Employee").all()
     
     if not employees:
-        return "No team data available."
+        return []
 
     team_data = []
     for employee in employees:
@@ -208,14 +190,16 @@ def get_team_data(manager_id):
             "Latest Performance Score": performance.performance_score if performance else "No data available"
         })
 
+    session.close()
     return team_data
 
-def get_all_employee_data():
+def get_all_employee_data() -> list:
     """Fetch all employees' details (for HR)."""
+    session = get_session()
     employees = session.query(UserInfo).filter_by(role="Employee").all()
     
     if not employees:
-        return "No employee data found."
+        return []
     
     response = []
     for emp in employees:
@@ -227,11 +211,14 @@ def get_all_employee_data():
             "Latest Performance Score": performance.performance_score if performance else "No data available"
         })
     
+    session.close()
     return response
 
-def store_chat_history(user_id, message, message_type="user"):
+def store_chat_history(user_id: int, message: str, message_type: str = "user") -> None:
     """Store chatbot conversation history."""
+    from models import ChatHistory
+    session = get_session()
     chat_entry = ChatHistory(user_id=user_id, message=message, message_type=message_type)
     session.add(chat_entry)
     session.commit()
-
+    session.close()

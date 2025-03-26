@@ -1,0 +1,66 @@
+2025-03-26 10:19:16,895 - db_context - INFO - Found user: Alice Johnson
+2025-03-26 10:19:17,128 - __main__ - INFO - LLM processing query for role 'hr': How is Alice performing? Also, show me meeting 1.
+2025-03-26 10:19:17,582 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 10:19:17,608 - __main__ - INFO - Generated LLM response: Alice Johnson's performance score is 4.5, as of 2025-03-21 23:33:50.060571. 
+
+Recent Transcript Excerpt: We discussed the new project requirements and set. 
+
+There is no information about "meeting 1" in the provided database.
+2025-03-26 10:28:31,920 - db_context - INFO - Found user: Alice Johnson
+2025-03-26 10:28:31,989 - __main__ - INFO - LLM processing query for role 'hr': How is Harsh performing? .
+2025-03-26 10:28:32,244 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 10:28:32,288 - __main__ - INFO - Generated LLM response: There is no information about Harsh in the provided database. The database only contains information about Alice Johnson.
+2025-03-26 10:30:01,822 - db_context - INFO - Found user: Frank Green
+2025-03-26 10:30:01,901 - __main__ - INFO - LLM processing query for role 'hr': How is Bob performing? .
+2025-03-26 10:30:02,164 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 10:30:02,211 - __main__ - INFO - Generated LLM response: There is no information available about Bob's performance in the provided database. The database only contains information about Frank Green.
+2025-03-26 10:30:40,571 - __main__ - INFO - LLM processing query for role 'hr': How is Bob performing? .
+2025-03-26 10:30:40,892 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 10:30:40,931 - __main__ - INFO - Generated LLM response: There is no specific information about Bob's performance in the database. The database only provides the overall average performance score of all employees, which is 4.
+2025-03-26 10:33:06,582 - db_context - INFO - Found user: Bob Smith
+2025-03-26 10:33:06,840 - __main__ - INFO - LLM processing query for role 'hr': How is Bob performing? .
+2025-03-26 10:33:07,196 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 10:33:07,228 - __main__ - INFO - Generated LLM response: Bob Smith's performance score is 4.0, as of 2025-03-21. He also mentioned that the Q1 numbers exceeded expectations.
+2025-03-26 10:48:26,650 - __main__ - INFO - LLM processing query for role 'hr': How is Bob performing? .
+2025-03-26 10:48:26,967 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 10:48:26,995 - __main__ - INFO - Generated LLM response: No record found for employee 'Bob'.
+2025-03-26 10:49:04,271 - __main__ - INFO - LLM processing query for role 'hr': How is Bob performing? .
+2025-03-26 10:49:04,559 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 10:49:04,589 - __main__ - INFO - Generated LLM response: There is no information available about an employee named Bob. The database only mentions that there is no record found for an employee named 'Frank'.
+2025-03-26 10:52:10,067 - __main__ - INFO - LLM processing query for role 'hr': How is Bob performing? .
+2025-03-26 10:52:10,397 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 10:52:10,429 - __main__ - INFO - Generated LLM response: There is no information about Bob or any other employee, including their performance, in the database. The only information available is that there is no record found for employee 'Frank'.
+2025-03-26 10:55:47,108 - db_context - INFO - Found user: Frank Green
+2025-03-26 10:55:47,297 - __main__ - INFO - LLM processing query for role 'hr': How is Bob performing? .
+2025-03-26 10:55:47,609 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 10:55:47,626 - __main__ - INFO - Generated LLM response: There is no information about Bob in the database. The database only contains information about Frank Green.
+2025-03-26 11:00:46,583 - db_context - INFO - Found user: Frank Green
+2025-03-26 11:00:46,676 - __main__ - INFO - LLM processing query for role 'hr': How is Bob performing? .
+2025-03-26 11:00:46,949 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 11:00:46,979 - __main__ - INFO - Generated LLM response: There is no information available about Bob in the database. The database only contains information about Frank Green.
+2025-03-26 11:11:52,087 - db_context - INFO - Found user: Frank Green
+2025-03-26 11:11:52,172 - __main__ - INFO - LLM processing query for role 'hr': How is Bob performing?
+2025-03-26 11:11:52,539 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 11:11:52,572 - __main__ - INFO - Generated LLM response: There is no information about Bob in the provided database. The database only contains information about Frank Green.
+2025-03-26 11:17:50,227 - db_context - INFO - Found user: Bob Smith
+2025-03-26 11:17:50,313 - __main__ - INFO - LLM processing query for role 'hr': How is Bob performing?
+2025-03-26 11:17:50,687 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 11:17:50,712 - __main__ - INFO - Generated LLM response: Bob Smith's performance score is 4.0, as of 2025-03-21. He also mentioned that their Q1 numbers exceeded expectations.
+2025-03-26 11:18:11,645 - db_context - INFO - Found user: Alice Johnson
+2025-03-26 11:18:11,707 - __main__ - INFO - LLM processing query for role 'hr': How is Alice performing?
+2025-03-26 11:18:12,007 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 11:18:12,031 - __main__ - INFO - Generated LLM response: Alice Johnson's performance score is 4.5, as of 2025-03-21 23:33:50.
+2025-03-26 11:18:40,481 - __main__ - INFO - LLM processing query for role 'hr': How is Harsh performing?
+2025-03-26 11:18:40,695 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 11:18:40,727 - __main__ - INFO - Generated LLM response: No record found for employee 'Harsh'.
+2025-03-26 11:19:24,507 - db_context - INFO - Found user: Alice Johnson
+2025-03-26 11:19:24,802 - __main__ - INFO - LLM processing query for role 'employee': How is Bob performing?
+2025-03-26 11:19:25,168 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 11:19:25,191 - __main__ - INFO - Generated LLM response: There is no information about Bob in the provided database. The database only contains information about Alice Johnson.
+2025-03-26 11:28:16,802 - __main__ - INFO - LLM processing query for role 'employee': How is Bob performing?
+2025-03-26 11:28:17,160 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 11:28:17,191 - __main__ - INFO - Generated LLM response: I don't have access to other employees' data, including Bob's performance.
+2025-03-26 11:28:46,937 - db_context - INFO - Found user: Bob Smith
+2025-03-26 11:28:47,001 - __main__ - INFO - LLM processing query for role 'hr': How is Bob performing?
+2025-03-26 11:28:47,305 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 11:28:47,335 - __main__ - INFO - Generated LLM response: Bob Smith's performance score is 4.0, as of 2025-03-21. He recently mentioned that their Q1 numbers exceeded expectations.
