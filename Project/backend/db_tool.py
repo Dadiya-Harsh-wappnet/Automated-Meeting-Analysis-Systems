@@ -3,6 +3,7 @@ import logging
 from sqlalchemy import desc
 from models import SessionLocal, User as UserInfo, PerformanceMetric as UserPerformance, Transcript as LearningTranscript, MeetingParticipant, UserSkillRecommendation, Skill as Skills, ChatHistory
 
+logging.basicConfig(filename="db_tool.log", level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 def get_user_id_by_name(user_name: str) -> str:

@@ -5,6 +5,7 @@ from sqlalchemy import desc
 from models import SessionLocal, User, Transcript, PerformanceMetric as UserPerformance
 from db_tool import get_employee_performance_by_name
 
+logging.basicConfig(filename="db_context.log",level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 # Load spaCy English model for name extraction
