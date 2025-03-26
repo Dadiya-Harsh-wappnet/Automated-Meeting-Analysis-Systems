@@ -223,8 +223,8 @@ def generate_response(query: str, role: str, logged_in_user: str = None) -> str:
         return "I'm sorry, I encountered an error while processing your request."
 
 # Remove comment to test the chatbot independently
-if __name__ == "__main__":
-    # Example: Logged in as Alice (an employee) asking about Bob's performance.
-    sample_query = "How is Bob performing?"
-    # Since Alice is an employee, if the query targets Bob (a different person), an access message is returned.
-    print(generate_response(sample_query, role="hr", logged_in_user="Frank"))
+# if __name__ == "__main__":
+#     # Example: Logged in as Alice (an employee) asking about Bob's performance.
+#     sample_query = "How is Bob performing?"
+#     # Since Alice is an employee, if the query targets Bob (a different person), an access message is returned.
+#     print(generate_response(sample_query, role="hr", logged_in_user="Frank"))
