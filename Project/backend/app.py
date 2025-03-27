@@ -1,4 +1,5 @@
-from flask import Flask
+import logging
+from flask import Flask, request
 from flask_cors import CORS
 from config import Config
 from models import Base  # Now using our declarative Base
@@ -23,6 +24,15 @@ jwt = JWTManager(app)
 engine = create_engine(app.config["SQLALCHEMY_DATABASE_URI"])
 with app.app_context():
     Base.metadata.create_all(engine)
+
+@app.before_request
+def log_request_info():
+    print("🔍 Incoming Request:")
+    print(f"📌 Method: {request.method}")
+    print(f"📌 Path: {request.path}")
+    print(f"📌 Headers: {request.headers}")
+    print(f"📌 Raw Body: {request.data}")  # ✅ This should show the request body
+
 
 # Register Blueprints
 app.register_blueprint(auth_bp, url_prefix="/api/auth")

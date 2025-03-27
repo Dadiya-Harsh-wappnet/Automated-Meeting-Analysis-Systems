@@ -6,6 +6,7 @@ from models import get_session, UserInfo, LearningTranscript, UserPerformance
 from db_tool import get_employee_performance_by_name
 
 logger = logging.getLogger(__name__)
+logging.getLogger("sqlalchemy.engine").propagate = False
 
 # Load spaCy English model for name extraction
 nlp = spacy.load("en_core_web_sm")

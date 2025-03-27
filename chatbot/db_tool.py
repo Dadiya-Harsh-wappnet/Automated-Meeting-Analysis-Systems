@@ -4,6 +4,8 @@ from sqlalchemy import desc
 from models import get_session, UserInfo, UserPerformance, LearningTranscript, MeetingParticipant, UserSkillRecommendation, Skills, ChatHistory
 
 logger = logging.getLogger(__name__)
+logging.getLogger("sqlalchemy.engine").propagate = False
+
 
 def get_user_id_by_name(user_name: str) -> str:
     """

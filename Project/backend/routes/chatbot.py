@@ -23,31 +23,38 @@ def get_logged_in_user_name():
 @jwt_required()
 def chatbot_query():
     try:
-        data = request.get_json()
-        
-        # ✅ Log received data for debugging
-        print("Received JSON:", data)
+        # ✅ Debugging: Print raw request data
+        print("🔹 Raw Request Data:", request.data)
+
+        # ✅ Debugging: Print JSON content before using it
+        data = request.get_json(silent=True)
 
         if not data:
-            return jsonify({"msg": "Invalid or missing JSON payload"}), 400
+            return jsonify({"msg": "Invalid or missing JSON payload"}), 400  # Return 400 instead of 422
+
+        print("📩 Parsed JSON:", data)
 
         role = data.get("role")
         query = data.get("query")
 
-        if not role or not query:
-            return jsonify({"msg": "Missing 'role' or 'query' field"}), 400
+        # ✅ Debugging: Check if role and query exist
+        print(f"📝 Role: {role} | Query: {query} | Type: {type(query)}")
 
-        # ✅ Ensure role is a valid string
+        if not isinstance(query, str) or not query.strip():
+            return jsonify({"msg": "Query must be a non-empty string"}), 400
+
+        if not isinstance(role, str) or not role.strip():
+            return jsonify({"msg": "Role must be a non-empty string"}), 400
+
         role = role.strip().lower()
 
-        # ✅ Get logged-in user name
         user_name = get_logged_in_user_name()
         if not user_name:
             return jsonify({"msg": "User not found"}), 404
 
-        # ✅ Call chatbot function
         response_text = generate_response(query, role, user_name)
 
         return jsonify({"response": response_text}), 200
     except Exception as e:
+        print(f"❌ Exception: {str(e)}")  # Log the error
         return jsonify({"msg": f"Error processing request: {str(e)}"}), 500

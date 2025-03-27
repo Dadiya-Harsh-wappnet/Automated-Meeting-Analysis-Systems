@@ -6,7 +6,7 @@ from datetime import datetime
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./test.db")  # Change this if needed
 
 # Create Engine
-engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(DATABASE_URL, echo=False)
 
 # Create Session Factory
 SessionLocal = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
@@ -146,5 +146,6 @@ class ChatHistory(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"))
     message_type = Column(String(10), nullable=False)  # "user" or "bot"
+    session_id = Column(String(36))   # New column: conversation session identifier
     message = Column(Text, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)

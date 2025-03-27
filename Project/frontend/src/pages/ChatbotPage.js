@@ -1,69 +1,94 @@
 // src/pages/ChatbotPage.js
-import React, { useState, useEffect } from "react";
-import { Container, Typography, TextField, Button, Box } from "@mui/material";
+import React, { useState, useEffect, useRef } from "react";
+import { Container, TextField, IconButton, Box, Typography, CircularProgress } from "@mui/material";
+import { Send as SendIcon } from "@mui/icons-material";
 import axios from "axios";
 
 function ChatbotPage() {
+  const [messages, setMessages] = useState([]);
   const [query, setQuery] = useState("");
-  const [response, setResponse] = useState("");
-  const [role, setRole] = useState("");
+  const [loading, setLoading] = useState(false);
+  const chatEndRef = useRef(null);
 
-  // ✅ Fetch role from localStorage after login
   useEffect(() => {
-    const userRole = localStorage.getItem("role");
-    if (userRole) {
-      setRole(userRole);
-    } else {
-      alert("Role not found. Please log in again.");
-    }
-  }, []);
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
-  const handleAsk = async () => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    alert("You must be logged in.");
-    return;
-  }
+  const handleSend = async () => {
+    if (!query.trim()) return;
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");  // ✅ Fetch role directly
 
-  try {
-    const res = await axios.post(
-      "http://localhost:5000/api/chatbot/",
-      JSON.stringify({ role, query }),  // ✅ Explicitly convert to JSON string
-      {
-        headers: {
-          "Content-Type": "application/json",  // ✅ Ensure JSON is sent
-          Authorization: `Bearer ${token}`
-        }
-      }
-    );
-    setResponse(res.data.response);
-  } catch (error) {
-    console.error("Chatbot query failed", error);
-    if (error.response) {
-      alert(`Error: ${error.response.data.msg || "Something went wrong"}`);
+    if (!token) {
+      alert("You must be logged in.");
+      return;
     }
-  }
-};
+    if (!role) {
+      alert("Role is missing. Please log in again.");
+      return;
+    }
+
+    const userMessage = { sender: "user", text: query };
+    setMessages((prev) => [...prev, userMessage]);
+    setQuery("");
+    setLoading(true);
+    
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/chatbot/",
+        { role, query },  // ✅ Ensure role is sent in the request
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setMessages((prev) => [...prev, { sender: "bot", text: res.data.response }]);
+    } catch (error) {
+      setMessages((prev) => [...prev, { sender: "bot", text: "Error fetching response." }]);
+    }
+    setLoading(false);
+  };
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
-      <Typography variant="h5" sx={{ mb: 2 }}>Chatbot</Typography>
-      <Typography variant="subtitle1" sx={{ mb: 2 }}>Your Role: {role}</Typography>
-      <Box sx={{ display: "flex", gap: 2 }}>
+    <Container maxWidth="md" sx={{ display: "flex", flexDirection: "column", height: "80vh" }}>
+      <Typography variant="h5" sx={{ my: 2, textAlign: "center" }}>AI Chat Assistant</Typography>
+      
+      <Box sx={{ flex: 1, overflowY: "auto", p: 2, border: "1px solid #ccc", borderRadius: 2 }}>
+        {messages.map((msg, index) => (
+          <Box key={index} sx={{
+            display: "flex",
+            justifyContent: msg.sender === "user" ? "flex-end" : "flex-start",
+            mb: 1
+          }}>
+            <Box sx={{
+              p: 2,
+              borderRadius: "12px",
+              backgroundColor: msg.sender === "user" ? "#0078ff" : "#e0e0e0",
+              color: msg.sender === "user" ? "#fff" : "#000",
+              maxWidth: "70%"
+            }}>
+              {msg.text}
+            </Box>
+          </Box>
+        ))}
+        {loading && (
+          <Box sx={{ display: "flex", justifyContent: "center", my: 2 }}>
+            <CircularProgress size={24} />
+          </Box>
+        )}
+        <div ref={chatEndRef} />
+      </Box>
+      
+      <Box sx={{ display: "flex", mt: 2 }}>
         <TextField
-          label="Enter your query"
           fullWidth
+          label="Type a message..."
+          variant="outlined"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyPress={(e) => e.key === "Enter" && handleSend()}
         />
-        <Button variant="contained" onClick={handleAsk}>Ask</Button>
+        <IconButton color="primary" onClick={handleSend} sx={{ ml: 1 }}>
+          <SendIcon />
+        </IconButton>
       </Box>
-      {response && (
-        <Box sx={{ mt: 2, p: 2, border: "1px solid #ccc" }}>
-          <Typography variant="subtitle1">Response:</Typography>
-          <Typography variant="body1">{response}</Typography>
-        </Box>
-      )}
     </Container>
   );
 }

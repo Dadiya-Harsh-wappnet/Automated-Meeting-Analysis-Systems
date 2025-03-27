@@ -1,11 +1,12 @@
-#db_context.py
+# db_context.py
 import logging
 import spacy
 from sqlalchemy import desc
-from models import SessionLocal, User, Transcript, PerformanceMetric as UserPerformance
 from db_tool import get_employee_performance_by_name
+from models import SessionLocal, User, Transcript, TranscriptLine  # TranscriptLine imported here
 
-logging.basicConfig(filename="db_context.log",level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# Configure logging
+logging.basicConfig(filename="db_context.log", level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
 # Load spaCy English model for name extraction
@@ -23,85 +24,93 @@ def extract_name(text: str) -> str:
 
 def retrieve_db_context(role: str, logged_in_user: str = None, query: str = None) -> str:
     """
-    Retrieve context from the database based on the user's role and the target employee name.
+    Retrieve context from the database based on the user's role and query.
     
-    - For employees: Only the logged-in user's data is returned. If the query targets someone else,
-      an access-denied message is returned.
-    - For HR: If the query contains a name different from the logged-in user, that employee’s data is fetched.
-      Otherwise, HR's own data or overall view is returned.
-    - For managers: Recent meeting transcripts are fetched.
+    For HR:
+      - If a query contains a name different from the logged-in user, return that employee's data.
+      - Otherwise, return the full employee roster.
+    
+    For Managers:
+      - Return a list of employees (subordinates) reporting to the logged-in manager.
+      - Additionally, return recent transcript excerpts from the team.
+    
+    For Employees:
+      - Return only their own data.
+      - Deny access if the query targets another employee.
     """
     session = SessionLocal()
     info = ""
-    
-    target_employee = None
-    if role.lower() == "hr":
-        if query:
-            extracted = extract_name(query)
-            # If a name is extracted and it's different from the logged in user, use it.
-            if extracted and (not logged_in_user or extracted.lower() != logged_in_user.lower()):
-                target_employee = extracted
-        # If no target is found, default to the logged in user.
-        if not target_employee:
-            target_employee = logged_in_user
-    elif role.lower() == "employee":
-        # Employees can only access their own data.
-        target_employee = logged_in_user
-        if query:
-            extracted = extract_name(query)
-            # If the extracted name differs from the logged in user, deny access.
-            if extracted and extracted.lower() != logged_in_user.lower():
-                session.close()
-                return "As a simple employee, you do not have access to other employees' data."
-    else:
-        # For other roles (e.g., manager), default to the logged in user's context.
-        target_employee = logged_in_user
-
-    if role.lower() in ["employee", "hr"] and target_employee:
-        # Fetch employee details using case-insensitive partial matching.
-        user = session.query(User).filter(User.name.ilike(f"%{target_employee}%")).first()
-        if user:
-            logger.info(f"Found user: {user.name}")
-            info += (f"Employee Profile: {user.name}, Email: {user.email}, "
-                     f"Department: {user.department}, Role: {user.role}.\n")
-            # Fetch performance data.
-            performance_details = get_employee_performance_by_name(user.name)
-            info += performance_details + "\n"
-            # Retrieve recent transcript excerpts.
-            transcripts = session.query(Transcript).filter(
-                Transcript.speaker_label.ilike(f"%{user.name}%")
-            ).order_by(desc(Transcript.created_at)).limit(3).all()
-            if transcripts:
-                excerpts = " | ".join([t.transcript[:50] for t in transcripts])
-                info += f"Recent Transcript Excerpts: {excerpts}.\n"
+    try:
+        if role.lower() == "hr":
+            # If a query is provided, attempt to extract a target employee name
+            if query:
+                extracted = extract_name(query)
+                if extracted and (not logged_in_user or extracted.lower() != logged_in_user.lower()):
+                    user = session.query(User).filter(User.name.ilike(f"%{extracted}%")).first()
+                    if user:
+                        logger.info(f"HR query: Found user {user.name}")
+                        role_text = user.role.name if user.role and hasattr(user.role, "name") else str(user.role)
+                        info += (f"Employee Profile: {user.name}, Email: {user.email}, "
+                                 f"Department: {user.department}, Role: {role_text}.\n")
+                        perf = get_employee_performance_by_name(user.name)
+                        info += perf + "\n"
+                    else:
+                        info += f"No record found for employee '{extracted}'.\n"
+                    return info
+            # If no specific target, return full employee roster
+            users = session.query(User).all()
+            if users:
+                roster = " | ".join([f"{u.name} ({u.role.name if u.role and hasattr(u.role, 'name') else u.role})" for u in users])
+                info += f"Employee Roster: {roster}.\n"
             else:
-                info += "No transcript excerpts found for this employee.\n"
+                info += "No employee records available.\n"
+            return info
+        
+        elif role.lower() == "manager":
+            # For managers, return employees who report to the logged-in manager.
+            # Assumes User.manager_id and a backref 'subordinates' are set.
+            manager = session.query(User).filter(User.name.ilike(f"%{logged_in_user}%")).first()
+            if manager:
+                if manager.subordinates:
+                    roster = " | ".join([f"{u.name} ({u.email})" for u in manager.subordinates])
+                    info += f"Employees working under you: {roster}.\n"
+                    # Also retrieve transcript excerpts for each subordinate
+                    transcript_excerpts = []
+                    for subordinate in manager.subordinates:
+                        # Retrieve the most recent transcript line where the subordinate is the speaker
+                        lines = session.query(TranscriptLine).filter(TranscriptLine.speaker_label.ilike(f"%{subordinate.name}%"))\
+                                        .order_by(desc(TranscriptLine.created_at)).limit(1).all()
+                        for line in lines:
+                            # Append a short excerpt
+                            transcript_excerpts.append(f"{subordinate.name}: {line.text[:50]}")
+                    if transcript_excerpts:
+                        info += "Recent Transcript Excerpts from your team:\n" + " | ".join(transcript_excerpts) + "\n"
+                else:
+                    info += f"No employees found under you, {logged_in_user}.\n"
+            else:
+                info += f"No record found for manager '{logged_in_user}'.\n"
+            return info
+        
+        elif role.lower() == "employee":
+            # Employees can only access their own data.
+            if query:
+                extracted = extract_name(query)
+                if extracted and extracted.lower() != logged_in_user.lower():
+                    session.close()
+                    return "You don't have access to this data."
+            user = session.query(User).filter(User.name.ilike(f"%{logged_in_user}%")).first()
+            if user:
+                role_text = user.role.name if user.role and hasattr(user.role, "name") else str(user.role)
+                info += (f"Employee Profile: {user.name}, Email: {user.email}, "
+                         f"Department: {user.department}, Role: {role_text}.\n")
+                perf = get_employee_performance_by_name(user.name)
+                info += perf + "\n"
+            else:
+                info += f"No record found for employee '{logged_in_user}'.\n"
+            return info
+        
         else:
-            info += f"No record found for employee '{target_employee}'.\n"
-    
-    elif role.lower() == "manager":
-        transcripts = session.query(Transcript).order_by(desc(Transcript.created_at)).limit(3).all()
-        if transcripts:
-            excerpts = " | ".join([t.transcript[:50] for t in transcripts])
-            info += f"Recent Meeting Transcript Excerpts: {excerpts}.\n"
-        else:
-            info += "No recent transcripts available.\n"
-    
-    elif role.lower() == "hr" and not target_employee:
-        users = session.query(User).all()
-        if users:
-            roster = " | ".join([f"{u.name} ({u.role})" for u in users])
-            info += f"Employee Roster: {roster}.\n"
-        else:
-            info += "No user records available.\n"
-        performances = session.query(UserPerformance).all()
-        if performances:
-            avg_score = sum([p.performance_score for p in performances]) / len(performances)
-            info += f"Overall Average Performance Score: {avg_score:.2f}.\n"
-        else:
-            info += "No performance data available.\n"
-    else:
-        info += "No role-specific context available.\n"
-    
-    session.close()
-    return info
+            info += "No role-specific context available.\n"
+            return info
+    finally:
+        session.close()
