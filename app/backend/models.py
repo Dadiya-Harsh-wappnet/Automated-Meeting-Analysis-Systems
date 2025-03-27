@@ -1,5 +1,5 @@
 import os
-from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime, ForeignKey, Numeric, Float
+from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime, ForeignKey, Numeric, Float, UniqueConstraint
 from sqlalchemy.orm import sessionmaker, declarative_base, relationship, scoped_session
 from datetime import datetime
 from dotenv import load_dotenv
@@ -17,12 +17,14 @@ class Role(Base):
     __tablename__ = "roles"
     id = Column(Integer, primary_key=True)
     name = Column(String(50), unique=True, nullable=False)
+    users = relationship("User", back_populates="role")
 
 # ----- Department -----
 class Department(Base):
     __tablename__ = "departments"
     id = Column(Integer, primary_key=True)
     name = Column(String(100), unique=True, nullable=False)
+    users = relationship("User", back_populates="department")
 
 # ----- User -----
 class User(Base):
@@ -39,8 +41,8 @@ class User(Base):
     manager_id = Column(Integer, ForeignKey("users.id"))
     created_at = Column(DateTime, default=datetime.utcnow)
 
-    role = relationship("Role", backref="users")
-    department = relationship("Department", backref="users")
+    role = relationship("Role", back_populates="users")
+    department = relationship("Department", back_populates="users")
     manager = relationship("User", remote_side=[id], backref="subordinates")
     messages = relationship("ChatHistory", back_populates="user")
 
@@ -59,8 +61,10 @@ class Meeting(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
 
     creator = relationship("User", backref="created_meetings")
+    transcripts = relationship("Transcript", back_populates="meeting")
+    tasks = relationship("Task", back_populates="meeting")
 
-# ----- Meeting Participants -----
+# ----- Meeting Participant -----
 class MeetingParticipant(Base):
     __tablename__ = "meeting_participants"
     meeting_id = Column(Integer, ForeignKey("meetings.id", ondelete="CASCADE"), primary_key=True)
@@ -77,7 +81,8 @@ class Transcript(Base):
     transcript_text = Column(Text)
     created_at = Column(DateTime, default=datetime.utcnow)
 
-    meeting = relationship("Meeting", backref="transcript")
+    meeting = relationship("Meeting", back_populates="transcripts")
+    lines = relationship("TranscriptLine", back_populates="transcript")
 
 # ----- Transcript Line -----
 class TranscriptLine(Base):
@@ -92,7 +97,7 @@ class TranscriptLine(Base):
     sentiment_score = Column(Numeric(3, 2))
     created_at = Column(DateTime, default=datetime.utcnow)
 
-    transcript = relationship("Transcript", backref="lines")
+    transcript = relationship("Transcript", back_populates="lines")
     speaker = relationship("User", backref="transcript_lines")
 
 # ----- Performance Metric -----
@@ -116,13 +121,18 @@ class Task(Base):
     assigned_to = Column(Integer, ForeignKey("users.id"))
     description = Column(Text, nullable=False)
     status = Column(String(50), default="Open")
+    fingerprint = Column(String(64))  # SHA-256 hash of the description
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-    meeting = relationship("Meeting", backref="tasks")
+    meeting = relationship("Meeting", back_populates="tasks")
     assignee = relationship("User", backref="tasks")
+    
+    __table_args__ = (
+        UniqueConstraint('meeting_id', 'fingerprint', name='uix_meeting_task'),
+    )
 
-# ----- Skills -----
+# ----- Skill -----
 class Skill(Base):
     __tablename__ = "skills"
     id = Column(Integer, primary_key=True)
@@ -136,13 +146,14 @@ class UserSkillRecommendation(Base):
     skill_id = Column(Integer, ForeignKey("skills.id"), nullable=False)
     recommendation_date = Column(DateTime, default=datetime.utcnow)
 
-# ----- Chat History ----- 
+# ----- Chat History -----
 class ChatHistory(Base):
     __tablename__ = "chat_history"
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     message_type = Column(String(10), nullable=False)  # "user" or "bot"
-    session_id = Column(String(36), nullable=False)    # conversation session identifier
+    session_id = Column(String(36), nullable=False)
     message = Column(Text, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
+
     user = relationship("User", back_populates="messages")

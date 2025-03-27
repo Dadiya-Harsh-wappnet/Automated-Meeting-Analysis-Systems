@@ -17,3 +17,4 @@ node_modules/
 Project/frontend/node_modules
 Project/backend/migrations/__pycache__/
 *.log
+/Project/alembic/
